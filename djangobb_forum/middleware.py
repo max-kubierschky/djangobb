@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+import django
 from django.core.cache import cache
 from django.utils import translation, timezone
 from django.conf import settings as global_settings
