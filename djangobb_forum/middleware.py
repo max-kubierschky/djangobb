@@ -7,14 +7,19 @@ import pytz
 
 from djangobb_forum import settings as forum_settings
 
+if django.VERSION < (1,10):
+    class MiddlewareMixin(object):
+        pass
+else:
+    from django.utils.deprecation import MiddlewareMixin
 
-class LastLoginMiddleware(object):
+class LastLoginMiddleware(MiddlewareMixin):
     def process_request(self, request):
         if request.user.is_authenticated():
             cache.set('djangobb_user%d' % request.user.id, True, forum_settings.USER_ONLINE_TIMEOUT)
 
 
-class ForumMiddleware(object):
+class ForumMiddleware(MiddlewareMixin):
     def process_request(self, request):
         if request.user.is_authenticated():
             profile = request.user.forum_profile
@@ -30,7 +35,7 @@ class ForumMiddleware(object):
                 request.LANGUAGE_CODE = translation.get_language()
 
 
-class UsersOnline(object):
+class UsersOnline(MiddlewareMixin):
     def process_request(self, request):
         now = timezone.now()
         delta = now - timedelta(seconds=forum_settings.USER_ONLINE_TIMEOUT)
@@ -55,7 +60,7 @@ class UsersOnline(object):
         cache.set('djangobb_guests_online', guests_online, 60*60*24)
 
 
-class TimezoneMiddleware(object):
+class TimezoneMiddleware(MiddlewareMixin):
     def process_request(self, request):
         if request.user.is_authenticated():
             profile = request.user.forum_profile
