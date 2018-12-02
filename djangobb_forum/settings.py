@@ -32,6 +32,7 @@ POST_USER_SEARCH = get('DJANGOBB_POST_USER_SEARCH', 1)
 NOTIFICATION_HANDLER = get('DJANGOBB_NOTIFICATION_HANDLER', 'djangobb_forum.subscription.email_topic_subscribers')
 ENABLE_POLLS = get('DJANGOBB_ENABLE_POLLS', True)
 JQUERY_URL = get('DJANGOBB_JQUERY_URL', '//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js')
+DEFAULT_THEME = get('DJANGOBB_DEFAULT_THEME', 'default')
 
 # GRAVATAR Extension
 GRAVATAR_SUPPORT = get('DJANGOBB_GRAVATAR_SUPPORT', True)

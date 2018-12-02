@@ -308,7 +308,7 @@ class Profile(models.Model):
     time_zone = models.CharField(_('Time zone'),max_length=50, choices=TZ_CHOICES, default=settings.TIME_ZONE)
     language = models.CharField(_('Language'), max_length=5, default='', choices=settings.LANGUAGES)
     avatar = ExtendedImageField(_('Avatar'), blank=True, default='', upload_to=forum_settings.AVATARS_UPLOAD_TO, width=forum_settings.AVATAR_WIDTH, height=forum_settings.AVATAR_HEIGHT)
-    theme = models.CharField(_('Theme'), choices=THEME_CHOICES, max_length=80, default='default')
+    theme = models.CharField(_('Theme'), choices=THEME_CHOICES, max_length=80, default=forum_settings.DEFAULT_THEME)
     show_avatar = models.BooleanField(_('Show avatar'), blank=True, default=True)
     show_signatures = models.BooleanField(_('Show signatures'), blank=True, default=True)
     show_smilies = models.BooleanField(_('Show smilies'), blank=True, default=True)
